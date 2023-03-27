@@ -26,7 +26,7 @@ class Arena(metaclass=BaseSingleton):
         self.enemy = enemy
         self.game_is_running = True
 
-    def _check_players_hp(self):
+    def _check_players_hp(self) -> str | None:
         # TODO ПРОВЕРКА ЗДОРОВЬЯ ИГРОКА И ВРАГА
         # TODO проверка здоровья игрока и врага и возвращение результата строкой:
         # TODO может быть три результата:
@@ -56,7 +56,7 @@ class Arena(metaclass=BaseSingleton):
             else:
                 unit.stamina += self.STAMINA_PER_ROUND
 
-    def next_turn(self):
+    def next_turn(self) -> str:
         # TODO СЛЕДУЮЩИЙ ХОД -> return result | return self.enemy.hit(self.player)
         # TODO срабатывает когда игроп пропускает ход или когда игрок наносит удар.
         # TODO создаем поле result и проверяем что вернется в результате функции self._check_players_hp
@@ -72,7 +72,7 @@ class Arena(metaclass=BaseSingleton):
             self._stamina_regeneration()
             return self.enemy.hit(self.player)
 
-    def _end_game(self):
+    def _end_game(self) -> str:
         # TODO КНОПКА ЗАВЕРШЕНИЕ ИГРЫ - > return result: str
         # TODO очищаем синглтон - self._instances = {}
         # TODO останавливаем игру (game_is_running)
@@ -81,7 +81,7 @@ class Arena(metaclass=BaseSingleton):
         self. game_is_running = False
         return self.battle_result
 
-    def player_hit(self):
+    def player_hit(self) -> str:
         # TODO КНОПКА УДАР ИГРОКА -> return result: str
         # TODO получаем результат от функции self.player.hit
         # TODO запускаем следующий ход
@@ -90,7 +90,7 @@ class Arena(metaclass=BaseSingleton):
         turn_result = self.next_turn()
         return f'{result}<br>{turn_result}'
 
-    def player_use_skill(self):
+    def player_use_skill(self) -> str:
         # TODO КНОПКА ИГРОК ИСПОЛЬЗУЕТ УМЕНИЕ
         # TODO получаем результат от функции self.use_skill
         # TODO включаем следующий ход
