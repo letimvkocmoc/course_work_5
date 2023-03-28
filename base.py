@@ -1,10 +1,11 @@
 from unit import BaseUnit
+from typing import Any
 
 
 class BaseSingleton(type):
     _instances = {}
 
-    def __call__(cls, *args, **kwargs):
+    def __call__(cls, *args: Any, **kwargs: Any):
         if cls not in cls._instances:
             instance = super().__call__(*args, **kwargs)
             cls._instances[cls] = instance
@@ -18,7 +19,7 @@ class Arena(metaclass=BaseSingleton):
     game_is_running = False
     battle_result = None
 
-    def start_game(self, player: BaseUnit, enemy: BaseUnit):
+    def start_game(self, player: BaseUnit, enemy: BaseUnit) -> None:
         # TODO НАЧАЛО ИГРЫ -> None
         # TODO присваиваем экземпляру класса аттрибуты "игрок" и "противник"
         # TODO а также выставляем True для свойства "началась ли игра"
@@ -44,7 +45,7 @@ class Arena(metaclass=BaseSingleton):
 
         return self._end_game()
 
-    def _stamina_regeneration(self):
+    def _stamina_regeneration(self) -> None:
         # TODO регенерация здоровья и стамины для игрока и врага за ход
         # TODO в этом методе к количеству стамины игрока и врага прибавляется константное значение.
         # TODO главное чтобы оно не привысило максимальные значения (используйте if)
